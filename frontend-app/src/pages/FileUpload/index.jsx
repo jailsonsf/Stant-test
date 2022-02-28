@@ -21,7 +21,7 @@ export default function FileUpload() {
       })
     );
 
-    console.log(responseData);
+    console.log(responseData['data']);
 }
 
   return (
