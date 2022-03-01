@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 const { convertFile2Array, convertArray2Object } = require("../utils/convert_array");
+const { createTracks } = require("./create_tracks");
 
 module.exports = {
     organize_events(req, res) {
@@ -19,9 +20,10 @@ module.exports = {
             if (err) {
                 console.log(err);
                 return;
-            } 
+            }
 
-            return res.json({ content: array_events });
+            return  res.json(createTracks(array_events))
         });
     }
+    
 }
