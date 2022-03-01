@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
 import api from '../../services/api';
+import { Container } from './styles';
 
 export default function FileUpload() {
   const [ fileUpload, setFileUpload ] = useState(null);
-  const [ responseData, setResponseData ] = useState(null);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -13,29 +13,27 @@ export default function FileUpload() {
 
     data.append('file', fileUpload);
 
-    setResponseData(
-      await api.post('/api/events', data, {
-        headers: {
-          "Content-Type": "multipart/form-data"
-        }
-      })
-    );
-
-    console.log(responseData['data']);
+    console.log(await api.post('/api/events', data, {
+      headers: {
+        "Content-Type": "multipart/form-data"
+      }
+    }))
 }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Upload file:
-        <input
-          type="file"
-          single="true"
-          onChange={event => setFileUpload(event.target.files[0])}
-        />
-      </label>
-      <br />
-      <button type="submit">Submit</button>
-    </form>
+    <Container id='main-container'>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Upload file:
+          <input
+            type="file"
+            single="true"
+            onChange={event => setFileUpload(event.target.files[0])}
+          />
+        </label>
+        <br />
+        <button type="submit">Upload Events</button>
+      </form>
+    </Container>
   );
 }
