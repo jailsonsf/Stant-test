@@ -7,7 +7,7 @@ Rails para usuários de Django lightning
 Trabalho remoto: prós e cons 60min
 Desenvolvimento orientado a gambiarras 45min
 Aplicações isomórficas: o futuro (que talvez nunca chegaremos) 30min
-Codifique menos, Escreva mais!30min
+Codifique menos, Escreva mais! 30min
 Programação em par 45min
 A mágica do Rails: como ser mais produtivo 60min
 Ruby on Rails: Por que devemos deixá-lo para trás 60min
