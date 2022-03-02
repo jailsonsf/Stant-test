@@ -1,9 +1,9 @@
 module.exports = {
-    convertFile2Array(data) {
+    convertFileToArray(data) {
         return data.split(/\r?\n/);
     },
 
-    convertArray2Object(line) {
+    convertArrayToObject(line) {
         var arr = line.split(' ');
         var event_time = arr[arr.length-1];
         arr.pop();
