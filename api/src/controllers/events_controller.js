@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const { convertFile2Array, convertArray2Object } = require("../utils/convert_array");
+const { convertFileToArray, convertArrayToObject } = require("../utils/convert_array");
 const { verifyFile } = require("../utils/verify_file");
 const { createTracks } = require("./create_tracks");
 
@@ -19,11 +19,11 @@ module.exports = {
 
         fs.readFile(`${path.resolve(__dirname, '..', '..', 'uploads')}/${filename}`,
         'utf-8', (err, data) => {
-            var lines = convertFile2Array(data);
+            var lines = convertFileToArray(data);
 
             var array_events = []
             lines.forEach(line => {
-                array_events.push(convertArray2Object(line));
+                array_events.push(convertArrayToObject(line));
             });
 
             if (err) {
