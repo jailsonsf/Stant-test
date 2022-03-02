@@ -7,12 +7,12 @@ const {
 const INITIAL_EVENT_HOUR = hoursToMinutes(9);
 const LUNCH = hoursToMinutes(12);
 const MIDLE_EVENT_HOUR = hoursToMinutes(13);
-const NETWORKING_MIN = hoursToMinutes(16);
 const NETWORKING_MAX = hoursToMinutes(17);
 
-const tracks = [];
-let track = [];
 function createTracks(array_events) {
+    const tracks = [];
+    let track = [];
+
     let event_start_time = INITIAL_EVENT_HOUR;
     let previous_event_end_time = INITIAL_EVENT_HOUR;
     let network_event = null;
@@ -61,18 +61,10 @@ function createTracks(array_events) {
                 }
             } else {
                 if (
-                    array_events[index].duration == 5 ||
                     array_events[index].duration + previous_event_end_time > LUNCH
                 ) {
                     let event = array_events[index];
                     moveToLast(event, index);
-                }
-
-                if (index < array_events.length - 1) {
-                    if (previous_event_end_time + array_events[index].duration + array_events[index+1].duration) {
-                        let event = array_events[index];
-                        moveToLast(event, index);
-                    }
                 }
 
                 if (
@@ -80,6 +72,9 @@ function createTracks(array_events) {
                 ) {
                     addEvent(array_events[index], previous_event_end_time);
                 } else {
+                    let event = array_events[index];
+                    moveToLast(event, index);
+                    
                     addNetworking();
                     track = [];
                 }

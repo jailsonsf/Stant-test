@@ -31,7 +31,7 @@ module.exports = {
                 return;
             }
 
-            return  res.status(200).json(createTracks(array_events))
+            return  res.status(200).json(createTracks(array_events));
         });
     }
     
