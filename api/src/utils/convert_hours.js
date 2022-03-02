@@ -9,7 +9,16 @@ function hoursToMinutes(hours) {
     return hours * 60;
 }
 
+function stringHoursToMinutes(hours) {
+    const [ hour, minutes ] = hours.split(':').map(x => parseInt(x) );
+
+    const total_minutes = hoursToMinutes(hour) + minutes;
+
+    return total_minutes;
+}
+
 module.exports = {
     minutesToHoursString,
-    hoursToMinutes
+    hoursToMinutes,
+    stringHoursToMinutes
 }
