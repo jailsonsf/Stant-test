@@ -1,8 +1,14 @@
-const INITIAL_EVENT_HOUR = 9 * 60;
-const LUNCH = 12 * 60;
-const MIDLE_EVENT_HOUR = 13 * 60;
-const NETWORKING_MIN = 16 * 60;
-const NETWORKING_MAX = 17 * 60;
+const { 
+    hoursToMinutes,
+    minutesToHoursString,
+    stringHoursToMinutes
+} = require('../utils/convert_hours');
+
+const INITIAL_EVENT_HOUR = hoursToMinutes(9);
+const LUNCH = hoursToMinutes(12);
+const MIDLE_EVENT_HOUR = hoursToMinutes(13);
+const NETWORKING_MIN = hoursToMinutes(16);
+const NETWORKING_MAX = hoursToMinutes(17);
 
 const tracks = [];
 let track = [];
@@ -14,14 +20,35 @@ function createTracks(array_events) {
     function addEvent(event_to_add, event_time) {
         let event = createEvent(event_to_add, event_time);
         track.push(event);
-        previous_event_end_time = event.event_end;
+        previous_event_end_time = stringHoursToMinutes(event.event_end);
+    }
+
+    function addLunch() {
+        let event = {
+            title: 'Lunch break',
+            duration: 60,
+        }
+        track.push(createEvent(event, LUNCH));
+    }
+
+    function addNetworking() {
+        network_event = createEvent({
+            title: 'Network break',
+            duration: 60,
+        }, NETWORKING_MAX);
+        track.push(network_event);
+    }
+
+    function moveToLast(event, index) {
+        array_events.splice(index, 1);
+        array_events.push(event);
     }
 
     for (let index = 0; index < array_events.length; index++) {
         if (tracks.length === 0 || track.length === 0) {
             addEvent(array_events[index], event_start_time);
 
-            if (network_event) {
+            if (tracks.length > 0) {
                 track.push(network_event);
             }
         } else {
@@ -29,33 +56,36 @@ function createTracks(array_events) {
                 addEvent(array_events[index], previous_event_end_time);
 
                 if (previous_event_end_time === LUNCH) {
-                    let event = {
-                        title: 'Lunch break',
-                        duration: 60,
-                    }
-                    track.push(createEvent(event, LUNCH));
+                    addLunch();
                     previous_event_end_time = MIDLE_EVENT_HOUR;
                 }
             } else {
-                if (array_events[index].duration == 5 || array_events[index].duration + previous_event_end_time > LUNCH) {
+                if (
+                    array_events[index].duration == 5 ||
+                    array_events[index].duration + previous_event_end_time > LUNCH
+                ) {
                     let event = array_events[index];
-                    array_events.splice(index, 1);
-                    array_events.push(event);
+                    moveToLast(event, index);
                 }
 
-                if (array_events[index].duration + previous_event_end_time < NETWORKING_MAX) {
+                if (index < array_events.length - 1) {
+                    if (previous_event_end_time + array_events[index].duration + array_events[index+1].duration) {
+                        let event = array_events[index];
+                        moveToLast(event, index);
+                    }
+                }
+
+                if (
+                    array_events[index].duration + previous_event_end_time <= NETWORKING_MAX
+                ) {
                     addEvent(array_events[index], previous_event_end_time);
                 } else {
-                    let network_event = createEvent({
-                        title: 'Network break',
-                        duration: 60,
-                    }, previous_event_end_time);
-                    track.push(network_event);
+                    addNetworking();
                     track = [];
                 }
             }
         }
-
+        
         if (!tracks.includes(track)) {
             tracks.push(track)
         }
@@ -67,8 +97,8 @@ function createTracks(array_events) {
 function createEvent(event, event_start) {
     return {
         ...event,
-        event_start,
-        event_end: event_start + event.duration
+        event_start: minutesToHoursString(event_start),
+        event_end: minutesToHoursString(event_start + event.duration)
     };
 }
 
