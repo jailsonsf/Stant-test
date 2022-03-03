@@ -5,11 +5,11 @@ Este projeto é um organizador de palestras, nele recebemos um arquivo com uma l
 ## Projeto
 O projeto está dividido em duas partes. A parte da API onde temos toda a lógica de como organizar as palestras e de como tratar as lista de propostas de palestras recebidas; E a parte do frontend responsável por enviar o arquivo contendo as propostas de palestras.
 ### Features
-- [ ] API
+- [x] API
   - [x] Endpoint para receber arquivo com a listagem de palestras
   - [x] Transformar o conteudo do arquivo recebido em um array de objetos
-  - [ ] Criar Tracks
-  - [ ] Retornar Palestras organizadas
+  - [x] Criar Tracks
+  - [x] Retornar Palestras organizadas
 - [x] Frontend
   - [x] Enviar arquivo para a api
 ## Executar o projeto
@@ -51,7 +51,7 @@ Feito isso vamos executar nossa aplicação frontend usando o comando:
     yarn dev
     # or npm run dev
 ```
-Com isso nossa aplicação frontend já está executando e aceitando as requisições para o nosso endpoint.
+Com isso nossa aplicação frontend já está executando e aceitando as requisições para o nosso endpoint. Para fazer essas requisicões basta adicionarmos um arquivo com as propostas de palestras igual ao arquivo de exemplo (arquivo proposals.txt na raiz do projeto).
 ## Tecnologias usadas
 ![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?logo=javascript&logoColor=white&style=for-the-badge)
 ![Node.js](https://img.shields.io/badge/-Node.js-339933?logo=node.js&logoColor=white&style=for-the-badge)
