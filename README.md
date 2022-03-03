@@ -36,7 +36,14 @@ Feito isso vamos executar nossa api usando o comando:
     # or npm run dev
 ```
 Com isso nossa api já está executando e aceitando as requisições para o nosso endpoint.
+
+Para fazer essas requisições podemos usar ferramentas como o insomnia ou postman.
+
+Em uma dessas ferramentas vamos criar uma rota do tipo POST que faz requisição para o link da nossa api, e vamos configurar a requisição para fazer o upload de arquivos usando o corpo da requisição como multipart.
+![Post Insomnia](assets/insomnia.png)
 #### Executando o frontend
+Podemos também fazer essas requisições pelo nosso frontend
+
 Em um terminal vamos executar o seguinte comando:
 ```bash
     cd frontend-app
@@ -51,7 +58,13 @@ Feito isso vamos executar nossa aplicação frontend usando o comando:
     yarn dev
     # or npm run dev
 ```
-Com isso nossa aplicação frontend já está executando e aceitando as requisições para o nosso endpoint. Para fazer essas requisicões basta adicionarmos um arquivo com as propostas de palestras igual ao arquivo de exemplo (arquivo proposals.txt na raiz do projeto).
+Com isso nossa aplicação frontend já está executando e aceitando as requisições para o nosso endpoint.
+
+Para acessarmos o link do nosso app frontend podemos clicar no link que será mostrado no terminal onde executamos o nosso frontend:
+![Terminal](assets/terminal.png)
+
+Para fazer essas requisicões basta adicionarmos um arquivo com as propostas de palestras igual ao arquivo de exemplo (arquivo proposals.txt na raiz do projeto). E para vermos o resultado das requisições vamos usar o console do navegador (F12 para abrir o console)
+![App](assets/app.png)
 ## Tecnologias usadas
 ![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?logo=javascript&logoColor=white&style=for-the-badge)
 ![Node.js](https://img.shields.io/badge/-Node.js-339933?logo=node.js&logoColor=white&style=for-the-badge)
