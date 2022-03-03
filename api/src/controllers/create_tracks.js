@@ -21,6 +21,7 @@ function createTracks(array_events) {
         let event = createEvent(event_to_add, event_time);
         track.push(event);
         previous_event_end_time = stringHoursToMinutes(event.event_end);
+        event_to_add.add = true;
     }
 
     function addLunch() {
@@ -80,9 +81,17 @@ function createTracks(array_events) {
                 }
             }
         }
+
+        if (index == array_events.length - 1) {
+            array_events.forEach(event => {
+                if (!event.add) {
+                    addEvent(event, previous_event_end_time);
+                }
+            });
+        }
         
         if (!tracks.includes(track)) {
-            tracks.push(track)
+            tracks.push(track);
         }
     }
 
