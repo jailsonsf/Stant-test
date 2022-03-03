@@ -13,12 +13,17 @@ export default function FileUpload() {
 
     data.append('file', fileUpload);
 
-    console.log(await api.post('/api/events', data, {
-      headers: {
-        "Content-Type": "multipart/form-data"
-      }
-    }))
-}
+    try {
+      console.log(await api.post('/api/events', data, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      }))
+    } catch (err) {
+        console.log(err.response.status)
+        console.log(err.response.data)
+    }
+  }
 
   return (
     <Container id='main-container'>
