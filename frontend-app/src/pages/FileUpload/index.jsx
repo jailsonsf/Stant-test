@@ -23,7 +23,7 @@ export default function FileUpload() {
         console.log(err.response.status)
         console.log(err.response.data)
     }
-}
+  }
 
   return (
     <Container id='main-container'>

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
     outline: 2px dashed grey;
     outline-offset: -10px;
-    margin-top: 100px;
+    margin-top: 50px;
     background: #c0d6e4;
     padding: 10px 10px;
     position: relative;
@@ -24,7 +24,7 @@ export const Container = styled.div`
         }
     
         input {
-            opacity: 0; /* invisible but it's there! */
+            opacity: 0;
             width: 100%;
             height: 200px;
             border: 1px solid #ddd;
