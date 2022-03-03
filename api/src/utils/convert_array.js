@@ -1,3 +1,5 @@
+const { v4: uuidV4 } = require('uuid');
+
 module.exports = {
     convertFileToArray(data) {
         return data.split(/\r?\n/);
@@ -14,6 +16,10 @@ module.exports = {
             event_time = parseInt(event_time.slice(0, -3));
         }
 
-        return { title: arr.join(' '), duration: event_time }
+        return { 
+            id: uuidV4(),
+            title: arr.join(' '),
+            duration: event_time
+        }
     }
 }
